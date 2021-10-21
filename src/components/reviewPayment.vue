@@ -136,6 +136,7 @@ export default {
       },
       getRadioValue(e){
           this.payMode=e.target.value;
+          this.$emit('payment',e.target.value);
       },
       selectValue(value){
           this.payMode=value;

@@ -3,13 +3,24 @@
                     <div>
                     <label class="">{{labelName}}<span class="text-danger">*</span></label>
                     </div>
-                    <input type="text" name="" id="">
+                    <input type="text" v-model="value" @change="e=>handleField(e)" :name="`${name}`" id="">
      </div>
 </template>
 <script>
 export default {
     name:"Input",
-    props:['labelName']
+    props:['labelName','name'],
+    data(){
+      return{
+        value:""
+      }
+    },
+    methods:{
+      handleField(e){
+        this.$emit('handleInput',e.target.value,e.target.name);
+      }
+  
+    }
 }
 </script>
 <style scoped>

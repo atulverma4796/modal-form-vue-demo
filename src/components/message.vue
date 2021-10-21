@@ -21,7 +21,7 @@
                 <p class="normal">Add a short message to the dealer:</p>
             </div>
             <div class="card col-12  review-textarea-content">
-                <textarea maxlength="250" placeholder="I would like to make an offer on your 2019 Harley-Davidson® XL 1200NS - Sportster® Iron 1200 . My offer is $50,000. " class="review-textarea"/>
+                <textarea maxlength="250" placeholder="I would like to make an offer on your 2019 Harley-Davidson® XL 1200NS - Sportster® Iron 1200 . My offer is $50,000. " class="review-textarea" @change="e=>getTextArea(e)"/>
             </div>
         </div>
         <div class="row">
@@ -51,6 +51,9 @@ export default {
           showMenu(){
           this.openAccordion=!this.openAccordion;
           },
+          getTextArea(e){
+              this.$emit('getMessages',e.target.value);
+          }
       }
 }
 </script>

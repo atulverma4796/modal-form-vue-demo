@@ -14,17 +14,17 @@
               </button>
           </div>
           <div class="contact" v-if="!submitAction">
-           <Contact/>
+           <Contact @collectValue="collectInputValue"/>
             <div class="sepLine"></div>
-            <Trade/>
+            <Trade @collectValues="collectInputValues"/>
             <div></div>
             <div class="sepLine"></div>
-            <ReviewPayment/>
+            <ReviewPayment @payment="getPayment"/>
              <div class="sepLine"></div>
-             <Message/>
+             <Message @getMessages="getMessage"/>
            </div>
             <div v-if="submitAction">
-                <Result/>
+                <Result :contactData="contactData" :tradeDetail="tradeDetail" :payment="payment" :message="message" />
             </div>
           <div class="d-flex flex-column footer-area-div">
               <div class="d-flex justify-content-center"></div>
@@ -62,6 +62,24 @@ export default {
       return {
           showPopUp:false,
           submitAction:false,
+            contactData:{
+                fname:"",
+                lname:"",
+                email:"",
+                mobile:"",
+                offer:"",
+            },
+            tradeDetail:{
+                year:"",
+                   make:"",
+                model:"",
+                  condition:"",
+                mileage:"",
+                vin:"",
+              
+            },
+            payment:"",
+            message:""
       }
   },
   methods:{
@@ -74,6 +92,53 @@ export default {
       },
       submitForm(){
           this.submitAction=true;
+      },
+      collectInputValue(value,name){
+          if(name==="First Name"){
+              this.contactData.fname=value;
+          }
+           if(name==="Last Name"){
+              this.contactData.lname=value;
+          }
+           if(name==="Email"){
+              this.contactData.email=value;
+          }
+           if(name==="mobile"){
+              this.contactData.mobile=value;
+          }
+           if(name==="offer"){
+              this.contactData.offer=value;
+          }
+          
+          console.log(this.contactData)
+      },
+      collectInputValues(value,name){
+           if(name==="Year"){
+              this.tradeDetail.year=value;
+          }
+        if(name==="Make"){
+              this.tradeDetail.make=value;
+          }
+           if(name==="Model"){
+              this.tradeDetail.model=value;
+          }
+            if(name==="Condition"){
+              this.tradeDetail.condition=value;
+          }
+           if(name==="Mileage"){
+              this.tradeDetail.mileage=value;
+          }
+            if(name==="VIN"){
+              this.tradeDetail.vin=value;
+          }
+          console.log(this.tradeDetail)
+         
+      },
+      getPayment(value){
+          this.payment=value;
+      },
+      getMessage(value){
+          this.message=value;
       }
   }
 }

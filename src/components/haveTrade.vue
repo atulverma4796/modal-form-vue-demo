@@ -26,25 +26,25 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="dropd">
-                  <Dropdown :years="years" heading="Select Year"/>
+                  <Dropdown :years="years" heading="Select Year" name="Year"  @handleDD="getValue"/>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <Input labelName="Make"/>
+                  <Input labelName="Make" name="Make"  @handleInput="getValue"/>
                 </div>
                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <Input labelName="Model"/>
+                  <Input labelName="Model" name="Model"  @handleInput="getValue"/>
                 </div>
                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="dropd">
-                  <Dropdown :years="condition" heading="Condition"/>
+                  <Dropdown :years="condition" heading="Condition" name="Condition" @handleDD="getValue"/>
                     </div>
                 </div>
                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <Input labelName="Estimated Mileage"/>
+                  <Input labelName="Estimated Mileage" name="Mileage"  @handleInput="getValue"/>
                 </div>
                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <Input labelName="VIN"/>
+                  <Input labelName="VIN" name="VIN"  @handleInput="getValue"/>
                 </div>
             </div>
         </div>
@@ -77,6 +77,9 @@ export default {
       },
       TradeIn(){
           this.tradeIn=true;
+      },
+      getValue(value,name){
+          this.$emit('collectValues',value,name)
       }
 
   },

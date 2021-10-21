@@ -16,22 +16,22 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="group">
-                   <Input labelName="First Name"/>
+                   <Input labelName="First Name" @handleInput="getValue" name="First Name" />
                 </div>
             </div>
              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="group">
-                   <Input labelName="Last Name"/>
+                   <Input labelName="Last Name" name="Last Name"  @handleInput="getValue"/>
                 </div>
             </div>
              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="group">
-                   <Input labelName="Email"/>
+                   <Input labelName="Email" name="Email" @handleInput="getValue"/>
                 </div>
             </div>
              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="group">
-                   <Input labelName="Phone Number"/>
+                   <Input labelName="Phone Number" name="mobile"  @handleInput="getValue"/>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-12">
-                 <Input labelName="Enter Offer"/>
+                 <Input labelName="Enter Offer"  name="offer" @handleInput="getValue"/>
             </div>
         </div>
     </div>
@@ -53,10 +53,20 @@
 import Input from "./inputBox.vue"
 export default {
     name:"Contact",
+    data(){
+        return {
+          
+        }
+    },
     components:{
         Input,
+    },
+    methods:{
+        getValue(value,name){
+           this.$emit('collectValue',value,name);
+        }
     }
-
+    
 }
 </script>
 <style scoped>

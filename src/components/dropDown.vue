@@ -3,7 +3,7 @@
     <div class="dropdown">
         <div></div>
         <div class="input-group mb-3">
-                <select  class="form-select" >
+                <select  class="form-select" :name="`${name}`" @change="e=>getDD(e)" >
                   <option selected>{{heading}}</option>
                   <option v-for="year in years" :key="year">{{ year }}</option>
                 </select>
@@ -14,7 +14,12 @@
 <script>
 export default {
    name:"Dropdown" ,
-   props:['years','heading']
+   props:['years','heading','name'],
+   methods:{
+     getDD(e){
+      this.$emit('handleDD',e.target.value,e.target.name);
+     }
+   }
 }
 </script>
 <style scoped>
