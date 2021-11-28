@@ -21,7 +21,7 @@
                 <p class="normal">Add a short message to the dealer:</p>
             </div>
             <div class="card col-12  review-textarea-content">
-                <textarea maxlength="250" placeholder="I would like to make an offer on your 2019 Harley-Davidson® XL 1200NS - Sportster® Iron 1200 . My offer is $50,000. " class="review-textarea" @change="e=>getTextArea(e)"/>
+                <textarea maxlength="250" v-model="value" :name="name" placeholder="I would like to make an offer on your 2019 Harley-Davidson® XL 1200NS - Sportster® Iron 1200 . My offer is $50,000. " class="review-textarea" @change="e=>getTextArea(e)"/>
             </div>
         </div>
         <div class="row">
@@ -42,9 +42,11 @@
 <script>
 export default {
     name:"Message",
+    props:['name'],
     data(){
         return{
         openAccordion:false,
+        value:""
         }
     },
      methods:{
@@ -52,7 +54,8 @@ export default {
           this.openAccordion=!this.openAccordion;
           },
           getTextArea(e){
-              this.$emit('getMessages',e.target.value);
+              let data={value:e.target.value,name:e.target.name}
+              this.$store.dispatch('handleInput', data)
           }
       }
 }

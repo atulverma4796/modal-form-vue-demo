@@ -3,7 +3,7 @@
                     <div>
                     <label class="">{{labelName}}<span class="text-danger">*</span></label>
                     </div>
-                    <input type="text" v-model="value" @change="e=>handleField(e)" :name="`${name}`" id="">
+                    <input type="text" v-model="value" @change="e=>handleField(e)" :name="`${name}`" id=""  @blur="e=>getError(e)">
      </div>
 </template>
 <script>
@@ -17,9 +17,13 @@ export default {
     },
     methods:{
       handleField(e){
-        this.$emit('handleInput',e.target.value,e.target.name);
+        let data={value:e.target.value,name:e.target.name}
+        this.$store.dispatch('handleInput', data)
+      },
+      getError(e){
+        let data={value:e.target.value,name:e.target.name}
+        this.$store.dispatch('validateForm',data);
       }
-  
     }
 }
 </script>

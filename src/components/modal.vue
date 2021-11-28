@@ -5,26 +5,26 @@
         </div>
         <div v-if="showPopUp">
         <div class="container-modal" >
-          <div class="modalHeading" v-if="!submitAction">
+          <div class="modalHeading" >
               <span class="modalText">Make an offer</span>
               <button class="btn btn-default closeBtn" @click="closeModel">
                   <span>
-                      X
+                    <b > X</b>
                   </span>
               </button>
           </div>
           <div class="contact" v-if="!submitAction">
-           <Contact @collectValue="collectInputValue"/>
+           <Contact/>
             <div class="sepLine"></div>
-            <Trade @collectValues="collectInputValues"/>
+            <Trade />
             <div></div>
             <div class="sepLine"></div>
-            <ReviewPayment @payment="getPayment"/>
+            <ReviewPayment />
              <div class="sepLine"></div>
-             <Message @getMessages="getMessage"/>
+             <Message  name="message"/>
            </div>
-            <div v-if="submitAction">
-                <Result :contactData="contactData" :tradeDetail="tradeDetail" :payment="payment" :message="message" />
+            <div v-if="submitAction" class="contact">
+                <Result  />
             </div>
           <div class="d-flex flex-column footer-area-div">
               <div class="d-flex justify-content-center"></div>
@@ -62,24 +62,6 @@ export default {
       return {
           showPopUp:false,
           submitAction:false,
-            contactData:{
-                fname:"",
-                lname:"",
-                email:"",
-                mobile:"",
-                offer:"",
-            },
-            tradeDetail:{
-                year:"",
-                   make:"",
-                model:"",
-                  condition:"",
-                mileage:"",
-                vin:"",
-              
-            },
-            payment:"",
-            message:""
       }
   },
   methods:{
@@ -92,47 +74,6 @@ export default {
       },
       submitForm(){
           this.submitAction=true;
-      },
-      collectInputValue(value,name){
-          if(name==="First Name"){
-              this.contactData.fname=value;
-          }
-           if(name==="Last Name"){
-              this.contactData.lname=value;
-          }
-           if(name==="Email"){
-              this.contactData.email=value;
-          }
-           if(name==="mobile"){
-              this.contactData.mobile=value;
-          }
-           if(name==="offer"){
-              this.contactData.offer=value;
-          }
-          
-          console.log(this.contactData)
-      },
-      collectInputValues(value,name){
-           if(name==="Year"){
-              this.tradeDetail.year=value;
-          }
-        if(name==="Make"){
-              this.tradeDetail.make=value;
-          }
-           if(name==="Model"){
-              this.tradeDetail.model=value;
-          }
-            if(name==="Condition"){
-              this.tradeDetail.condition=value;
-          }
-           if(name==="Mileage"){
-              this.tradeDetail.mileage=value;
-          }
-            if(name==="VIN"){
-              this.tradeDetail.vin=value;
-          }
-          console.log(this.tradeDetail)
-         
       },
       getPayment(value){
           this.payment=value;
@@ -167,7 +108,6 @@ export default {
 }
 .container-modal{
    border:1px solid;
-    z-index: 30;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -180,7 +120,6 @@ export default {
     width: 65%;
     background: #fff;
     height: 80vh;
-    overflow: hidden;
     border-radius: 12px;
 }
 
@@ -199,6 +138,11 @@ export default {
     padding: 15px;
     border: 0;
     height: 60px;
+    display: flex;
+ justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
 ::-webkit-scrollbar {
   width: 0px;

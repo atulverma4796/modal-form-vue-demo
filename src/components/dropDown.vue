@@ -17,7 +17,8 @@ export default {
    props:['years','heading','name'],
    methods:{
      getDD(e){
-      this.$emit('handleDD',e.target.value,e.target.name);
+        let data={value:e.target.value,name:e.target.name}
+        this.$store.dispatch('handleInput', data)
      }
    }
 }

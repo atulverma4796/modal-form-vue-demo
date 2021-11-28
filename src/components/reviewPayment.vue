@@ -23,7 +23,7 @@
         </div>
         <div class="row extra transparent">
             <div class="col-12 payMode radio-item" :class='{"activeRadio":payMode=="Cash"}' @click="selectValue('Cash')">
-                <span><input type="radio" name="payMode" value="Cash" v-model="payMode" @change="e=>getRadioValue(e)"/> </span>
+                <span><input type="radio" name="payMode" value="Cash"  v-model="payMode" @change="e=>getRadioValue(e)"/> </span>
                 <label class="">Cash</label>
             </div>
         </div>
@@ -136,7 +136,8 @@ export default {
       },
       getRadioValue(e){
           this.payMode=e.target.value;
-          this.$emit('payment',e.target.value);
+          let data={value:e.target.value,name:e.target.name}
+        this.$store.dispatch('handleInput', data)
       },
       selectValue(value){
           this.payMode=value;
